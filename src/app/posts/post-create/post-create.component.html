@@ -1,4 +1,5 @@
 <h4>Membuat Post Pertama</h4>
-<textarea rows="6"></textarea>
+<textarea rows="6" [(ngModel)]="FormInput" ></textarea>
 <br>
 <button (click)="onTambahPath()" >Simpan!</button>
+<p> {{ newData }} </p>

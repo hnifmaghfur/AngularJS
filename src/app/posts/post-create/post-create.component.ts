@@ -6,7 +6,10 @@ import { Component } from '@angular/core';
 })
 
 export class PostCreateComponent {
+  FormInput = '';
+  newData = 'No Content';
+
   onTambahPath() {
-    alert('Berhasil di tambahkan !');
+    this.newData = this.FormInput;
   }
 }
