@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
 })
 
 export class PostCreateComponent {
-
+  onTambahPath() {
+    alert('Berhasil di tambahkan !');
+  }
 }
