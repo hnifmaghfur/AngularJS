@@ -1,5 +1,7 @@
-<h4>Membuat Post Pertama</h4>
-<textarea rows="6" [(ngModel)]="FormInput" ></textarea>
-<br>
-<button (click)="onTambahPath()" >Simpan!</button>
-<p> {{ newData }} </p>
+<mat-card>
+  <mat-form-field>
+    <textarea matInput rows="auto" [(ngModel)]="FormInput"></textarea>
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="accent" (click)="onTambahPath()" >Simpan!</button>
+</mat-card>
