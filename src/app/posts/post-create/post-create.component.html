@@ -1,7 +1,31 @@
 <mat-card>
-  <mat-form-field>
-    <textarea matInput rows="auto" [(ngModel)]="FormInput"></textarea>
-  </mat-form-field>
-  <br>
-  <button mat-raised-button color="accent" (click)="onTambahPath()" >Simpan!</button>
+  <form (submit)="onTambahPath(postForm)" #postForm="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="title"
+        ngModel
+        required
+        minlength = 5
+        #title= "ngModel"
+        >
+        <mat-error *ngIf="title.invalid"> Masukkan Judul </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        matInput
+        rows="auto"
+        name="content"
+        ngModel
+        required
+        #content= "ngModel">
+      </textarea>
+      <mat-error *ngIf="content.invalid"> Masukan Kontent </mat-error>
+    </mat-form-field>
+    <br>
+    <button
+      mat-raised-button color="accent"
+      type="submit" > Simpan</button>
+  </form>
 </mat-card>

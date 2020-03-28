@@ -1,15 +1,10 @@
 <mat-accordion>
-  <mat-expansion-panel>
-
+  <mat-expansion-panel *ngFor="let post of posts">
     <mat-expansion-panel-header>
-      <mat-panel-title>
-        Expansional!
-      </mat-panel-title>
+        {{ post.title }}
     </mat-expansion-panel-header>
-
-      <p>
-        Ini Adalah isi Expansional
-      </p>
-
+        {{ post.content }}
   </mat-expansion-panel>
 </mat-accordion>
+
+<p class="no-post mat-body-1" *ngIf="posts.length <= 0">No Post Yet !!</p>
