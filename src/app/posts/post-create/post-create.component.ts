@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Post } from '../post.model';   //ini untuk deklaras tipe data
 import { NgForm } from '@angular/forms';
+import { PostsService } from '../post.service';
 
 @Component({
   selector: 'app-post-create',
@@ -12,16 +13,15 @@ import { NgForm } from '@angular/forms';
 export class PostCreateComponent {
   formTitle = "";
   formContent = "";
-  @Output() postForm = new EventEmitter<Post>();
+
+  constructor( public postsService: PostsService){}
 
   onTambahPath(form: NgForm) {
     if (form.invalid) {
       return;
     }
-    const post: Post = {
-      title: form.value.title,
-      content: form.value.content
-    }
-    this.postForm.emit(post);
+
+    this.postsService.addPost( form.value.title, form.value.content );
+    form.resetForm();
   }
 }

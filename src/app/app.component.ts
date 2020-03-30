@@ -8,9 +8,5 @@ import { Post } from './posts/post.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  simpanPosts: Post[] = [];
 
-  onPostTerima(post) {
-    this.simpanPosts.push(post);
-  }
 }
