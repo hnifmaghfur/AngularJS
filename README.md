@@ -7,5 +7,5 @@
 ```
 
 
-[![Ajukan pertanyaan](https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg)](https://wa.me/6281314646445?text=Mau%20Bertanya%20Angular%0A)
+[![Ajukan pertanyaan](https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg)](https://wa.me/6281314646445?text=Mau%20Bertanya%20Angular%20:%0A)
 
