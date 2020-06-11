@@ -11,7 +11,8 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
 
 const routes: Routes = [
   { path: '', component: PostOutputComponent },       //main web/root
-  { path: 'create', component: PostCreateComponent }  // ini jalur create
+  { path: 'create', component: PostCreateComponent },  // ini jalur create
+  { path: 'edit/:postId', component: PostCreateComponent }  // ini jalur create
 
 ];
 

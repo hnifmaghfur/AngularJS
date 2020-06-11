@@ -1,11 +1,12 @@
 <mat-card>
-  <form (submit)="onTambahPath(postForm)" #postForm="ngForm">
+  <mat-progress-bar mode="buffer" *ngIf="isLoading"></mat-progress-bar>
+  <form (submit)="onSavePath(postForm)" #postForm="ngForm" *ngIf="!isLoading">
     <mat-form-field>
       <input
         matInput
         type="text"
         name="title"
-        ngModel
+        [ngModel]="post?.title"
         required
         placeholder="Masukan Judul"
         minlength = 5
@@ -18,7 +19,7 @@
         matInput
         rows="auto"
         name="content"
-        ngModel
+        [ngModel]="post?.content"
         required
         placeholder="Masukan Kontent"
         #content= "ngModel">
