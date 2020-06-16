@@ -1,30 +1,30 @@
 <mat-card>
   <mat-progress-bar mode="buffer" *ngIf="isLoading"></mat-progress-bar>
-  <form (submit)="onSavePath(postForm)" #postForm="ngForm" *ngIf="!isLoading">
+  <form [formGroup]="form" (submit)="onSavePath()" *ngIf="!isLoading">
     <mat-form-field>
       <input
         matInput
         type="text"
-        name="title"
-        [ngModel]="post?.title"
-        required
+        formControlName="title"
         placeholder="Masukan Judul"
-        minlength = 5
-        #title= "ngModel"
-        >
-        <mat-error *ngIf="title.invalid"> Masukkan Judul </mat-error>
+      >
+      <mat-error *ngIf="form.get('title').invalid"> Masukkan Judul </mat-error>
     </mat-form-field>
+    <div>
+      <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+      <input type="file" #filePicker (change)="onImagePicked($event)">
+    </div>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+      <img [src]="imagePreview" [alt]="form.value.title">
+    </div>
     <mat-form-field>
       <textarea
         matInput
         rows="auto"
-        name="content"
-        [ngModel]="post?.content"
-        required
-        placeholder="Masukan Kontent"
-        #content= "ngModel">
+        formControlName="content"
+        placeholder="Masukan Kontent">
       </textarea>
-      <mat-error *ngIf="content.invalid"> Masukan Kontent </mat-error>
+      <mat-error *ngIf="form.get('content').invalid"> Masukan Kontent </mat-error>
     </mat-form-field>
     <br>
     <button
