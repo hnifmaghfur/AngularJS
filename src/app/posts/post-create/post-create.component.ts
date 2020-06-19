@@ -4,6 +4,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { PostsService } from '../post.service';
 import { Post } from '../post.model';
+import { MimeType } from './mime-type.validator';
 
 @Component({
   selector: 'app-post-create',
@@ -27,7 +28,7 @@ export class PostCreateComponent implements OnInit {
     this.form = new FormGroup({
       title: new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
       content: new FormControl(null, {validators: [Validators.required]}),
-      image: new FormControl(null, {validators: [Validators.required]})
+      image: new FormControl(null, {validators: [Validators.required], asyncValidators: [MimeType]})
     });
     this.route.paramMap.subscribe(( paramMap: ParamMap ) => {
       if (paramMap.has('postId')) {
@@ -69,4 +70,5 @@ export class PostCreateComponent implements OnInit {
     }
     this.form.reset();
   }
+
 }
