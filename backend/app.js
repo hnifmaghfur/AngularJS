@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const postsRoutes = require('./routes/post');
 
@@ -16,6 +17,7 @@ mongoose.connect('mongodb+srv://hanif:78fR9Y9MZi1f3pJc@database-xbatn.mongodb.ne
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use("/images", express.static(path.join("backend/images")));
 
 app.use((req, res, next) => {                           //untuk memberikan akses nemampilkan DB
   res.setHeader( "Access-Control-Allow-Origin", "*" );  // * berarti semuanya
