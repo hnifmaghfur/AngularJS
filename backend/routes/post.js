@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 
 const Post = require('../model/post');
+const { count } = require('console');
 
 const router = express.Router();
 
@@ -83,12 +84,26 @@ router.delete('/delete/:id',(req, res, next) => {
 });
 
 router.get('',(req, res, next) => {
-  Post.find().then(documents =>  {
+  const pageSize = +req.query.pagesize;     // + digunakan untuk mengubah nilai menjadi number only.
+  const currentPage = +req.query.page;
+  const postQuery = Post.find();2
+  let fetchPosts;
+  if (pageSize && currentPage){
+    postQuery
+    .skip(pageSize * (currentPage - 1))
+    .limit(pageSize);
+  }
+  postQuery.then(documents =>  {
+    fetchPosts = documents;
+    return Post.count();                  //untuk menghitung jumlah data yang masuk.
+  }).then(count => {
     res.status(200).json({
       message: "Post Fetch Successfuly",
-      posts: documents
+      posts: fetchPosts,
+      maxPosts: count
     });
-  });
+  }
+  );
 });
 
 module.exports = router;

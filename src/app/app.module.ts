@@ -9,7 +9,8 @@ import {
   MatCardModule,
   MatToolbarModule,
   MatExpansionModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatPaginatorModule
 } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -36,7 +37,8 @@ import { PostOutputComponent } from './posts/post-output/post-output.component';
     MatToolbarModule,
     MatExpansionModule,
     HttpClientModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,10 @@ mat-accordion {
   margin-top: 1rem;
 }
 
+mat-paginator {
+  margin-top: 5px;
+}
+
 .no-post {
   text-align: center;
 }
