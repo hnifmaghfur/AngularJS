@@ -4,10 +4,11 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const postsRoutes = require('./routes/post');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
-mongoose.connect('mongodb+srv://hanif:78fR9Y9MZi1f3pJc@database-xbatn.mongodb.net/database?retryWrites=true&w=majority', { useNewUrlParser: true })
+mongoose.connect("mongodb+srv://hanif:78fR9Y9MZi1f3pJc@database-xbatn.mongodb.net/database")
 .then(() => {
   console.log('Connected to Database!');
 })
@@ -33,5 +34,6 @@ app.use((req, res, next) => {                           //untuk memberikan akses
 });
 
 app.use('/api/posts', postsRoutes);
+app.use('/api/user', userRoutes);
 
 module.exports = app;

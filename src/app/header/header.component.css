@@ -11,6 +11,7 @@ ul {
   list-style: none;
   padding: 0;
   margin-left: 30px;
+  display: flex;
 }
 
 .spacer {

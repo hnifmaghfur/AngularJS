@@ -24,7 +24,7 @@ export class PostCreateComponent implements OnInit {
 
   constructor(public postsService: PostsService, public route: ActivatedRoute){}
 
-  ngOnInit(){                                                  //berfungsi untuk mode edit atau create
+  ngOnInit(){                                           //berfungsi untuk mode edit atau create
     this.form = new FormGroup({
       title: new FormControl(null, {validators: [Validators.required, Validators.minLength(3)]}),
       content: new FormControl(null, {validators: [Validators.required]}),

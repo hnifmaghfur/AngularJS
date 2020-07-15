@@ -2,7 +2,6 @@ const express = require('express');
 const multer = require('multer');
 
 const Post = require('../model/post');
-const { count } = require('console');
 
 const router = express.Router();
 
