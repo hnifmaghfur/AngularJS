@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import {
   MatInputModule,
   MatButtonModule,
@@ -20,6 +20,7 @@ import { HeaderComponent } from './header/header.component';
 import { PostOutputComponent } from './posts/post-output/post-output.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/singup.component';
+import { AuthIntercaptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { SignupComponent } from './auth/signup/singup.component';
     MatProgressBarModule,
     MatPaginatorModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthIntercaptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

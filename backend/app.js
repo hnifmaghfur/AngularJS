@@ -24,7 +24,7 @@ app.use((req, res, next) => {                           //untuk memberikan akses
   res.setHeader( "Access-Control-Allow-Origin", "*" );  // * berarti semuanya
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"    //beberapa tipe data yang bisa akses
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"    //beberapa tipe data yang bisa akses
     );
   res.setHeader(
     "Access-Control-Allow-Methods",        //method yang dapat diterapkan

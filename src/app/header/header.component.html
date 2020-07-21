@@ -4,14 +4,17 @@
   </span>
   <span class="spacer"></span>
   <ul>
-    <li>
-      <span><a mat-button routerLink="/create" routerLinkActive="mat-warn"> Input Pesan </a></span>
+    <li *ngIf="userIsAutenticated">
+      <span><a mat-button routerLink="/create" routerLinkActive="mat-warn"> New Message </a></span>
     </li>
-    <li>
+    <li *ngIf="!userIsAutenticated">
       <span><a mat-button routerLink="/login" routerLinkActive="mat-warn"> Login </a></span>
     </li>
-    <li>
+    <li *ngIf="!userIsAutenticated">
       <span><a mat-button routerLink="/signup" routerLinkActive="mat-warn"> Signup </a></span>
+    </li>
+    <li *ngIf="userIsAutenticated" (click)="onLogout()">
+      <span><button mat-button >Logout</button></span>
     </li>
   </ul>
 </mat-toolbar>

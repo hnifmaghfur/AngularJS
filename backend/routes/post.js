@@ -1,6 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 
+const checkAuth = require('../middleware/check-auth');
 const Post = require('../model/post');
 
 const router = express.Router();
@@ -27,7 +28,9 @@ const storage = multer.diskStorage({
   }
 });
 
-router.post('',multer({storage: storage}).single("image") ,(req, res, next) => {
+//checkAuth digunakan untuk mengenkripsi jalur(route)
+//multer digunakan untuk mengambil data fhoto
+router.post('', checkAuth, multer({storage: storage}).single("image") ,(req, res, next) => {
   const url = req.protocol + '://' + req.get("host");
   const post = new Post({
     title: req.body.title,
@@ -46,7 +49,7 @@ router.post('',multer({storage: storage}).single("image") ,(req, res, next) => {
   });
 });
 
-router.put('/edit/:id', multer({storage: storage}).single("image") ,(req, res, next) => {
+router.put('/edit/:id', checkAuth, multer({storage: storage}).single("image") ,(req, res, next) => {
   let imagePath = req.body.imagePath;
   if(req.file) {
     const url = req.protocol + '://' + req.get("host");
@@ -65,7 +68,7 @@ router.put('/edit/:id', multer({storage: storage}).single("image") ,(req, res, n
   });
 });
 
-router.get('/edit/:id',(req, res, next) => {
+router.get('/edit/:id', (req, res, next) => {
   Post.findById(req.params.id).then(post => {
     if (post) {
       res.status(200).json(post);
@@ -75,13 +78,14 @@ router.get('/edit/:id',(req, res, next) => {
   });
 });
 
-router.delete('/delete/:id',(req, res, next) => {
+router.delete('/delete/:id', checkAuth, (req, res, next) => {
   Post.deleteOne({_id: req.params.id}).then(result =>{
     console.log(result);
     res.status(200).json({ massage: "Post Deleted!" });
   });
 });
 
+//ini adalah jalur untuk tampilan awal
 router.get('',(req, res, next) => {
   const pageSize = +req.query.pagesize;     // + digunakan untuk mengubah nilai menjadi number only.
   const currentPage = +req.query.page;
