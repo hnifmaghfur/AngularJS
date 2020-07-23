@@ -19,12 +19,13 @@ export class PostsService {
     // tanda ${} digunakan untuk mengambil data dan di input ke http
     this.http.get<{massage: string, posts: any, maxPosts: number}>('http://localhost:3000/api/posts' + queryParams)
     .pipe(map((postData) => {
-      return {posts: postData.posts.map(Post => {     //Post disini adalah post dari mongodb / database
+      return {posts: postData.posts.map(post => {     //Post disini adalah post dari mongodb / database
         return {
-          title: Post.title,
-          content: Post.content,
-          id: Post._id,
-          imagePath: Post.imagePath
+          title: post.title,
+          content: post.content,
+          id: post._id,
+          imagePath: post.imagePath,
+          creator: post.creator
         };
       }), maxPosts: postData.maxPosts
       };
@@ -40,7 +41,7 @@ export class PostsService {
   }
 
   getPost( id:  string ){
-    return this.http.get<{ _id: string, title: string, content: string, imagePath: string }>('http://localhost:3000/api/posts/edit/' + id);
+    return this.http.get<{ _id: string, title: string, content: string, imagePath: string, creator: string }>('http://localhost:3000/api/posts/edit/' + id);
   }
 
   addPost( title: string, content: string, image: File) {
@@ -68,7 +69,8 @@ export class PostsService {
         id: id,
         title: title,
         content: content,
-        imagePath: image
+        imagePath: image,
+        creator: null
       }
     }
     this.http.put('http://localhost:3000/api/posts/edit/' + id, postData).

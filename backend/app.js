@@ -8,6 +8,7 @@ const userRoutes = require('./routes/user');
 
 const app = express();
 
+//akun database aevraury10
 mongoose.connect("mongodb+srv://hanif:78fR9Y9MZi1f3pJc@database-xbatn.mongodb.net/database")
 .then(() => {
   console.log('Connected to Database!');
